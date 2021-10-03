@@ -27,31 +27,29 @@ Fortunately, I've been learning how to program smart contracts with Solidity! I 
 
 ## Instructions
 
-This assignment has three levels of difficulty, with each contract increasing in complexity and capability. Although it is highly recommended you complete all three contracts, you are only required to solve one of the three contracts. We recommend you start with Level 1, then move forward as you complete the challenges. You can build all three with the skills you already have!
-
 * **Level One** is an `AssociateProfitSplitter` contract. This will accept ether into the contract, and divide it evenly among associate-level employees. This will allow the human resources department to pay employees quickly and efficiently.
 
 * **Level Two** is a `TieredProfitSplitter` that will distribute different percentages of incoming ether to employees at different tiers/levels. For example, the CEO gets paid 60%, CTO 25%, and Bob gets 15%.
 
 * **Level Three** is a `DeferredEquityPlan` that models traditional company stock plans. This contract will automatically manage 1000 shares, with an annual distribution of 250 shares over four years for a single employee.
 
-### Starting your project
+### Starting the project
 
-Navigate to the [Remix IDE](https://remix.ethereum.org) and create a new contract called `AssociateProfitSplitter.sol` using the starter code for Level One above.
+Navigating to the [Remix IDE](https://remix.ethereum.org) I created a new contract called `AssociateProfitSplitter.sol`.
 
-While developing and testing your contract, use the [Ganache](https://www.trufflesuite.com/ganache) development chain, and point MetaMask to `localhost:8545`, or replace the port with what you have set in your workspace.
+While developing and testing this contract, I used the [Ganache](https://www.trufflesuite.com/ganache) development chain, and point MetaMask to `localhost:8545`, or replace the port with what you have set in your workspace.
 
 ### Level One: The `AssociateProfitSplitter` Contract
 
-At the top of your contract, you will need to define the following `public` variables:
+At the top of the contract, I defined the following `public` variables:
 
-* `employee_one` — The `address` of the first employee. Make sure to set this to `payable`.
+* `employee_one` — The `address` of the first employee. Maked sure to set this to `payable`.
 
 * `employee_two` — Another `address payable` that represents the second employee.
 
 * `employee_three` — The third `address payable` that represents the third employee.
 
-Create a constructor function that accepts:
+Created a constructor function that accepts:
 
 * `address payable _one`
 
@@ -59,15 +57,15 @@ Create a constructor function that accepts:
 
 * `address payable _three`
 
-Within the constructor, set the employee addresses to equal the parameter values. This will allow you to avoid hardcoding the employee addresses.
+Within the constructor, I set the employee addresses equal to the parameter values. This will allow to avoid hardcoding the employee addresses.
 
-Next, create the following functions:
+Next, created the following functions:
 
 * `balance` — This function should be set to `public view returns(uint)`, and must return the contract's current balance. Since we should always be sending ether to the beneficiaries, this function should always return `0`. If it does not, the `deposit` function is not handling the remainders properly and should be fixed. This will serve as a test function of sorts.
 
 * `deposit` — This function should be set to `public payable` check, ensuring that only the owner can call the function.
 
-  * In this function, perform the following steps:
+  * In this function, the following steps were performed:
 
     * Set a `uint amount` to equal `msg.value / 3;` in order to calculate the split value of the ether.
 
@@ -79,25 +77,29 @@ Next, create the following functions:
 
     * We may either have `1` or `2` wei left over, so transfer the `msg.value - amount * 3` back to `msg.sender`. This will re-multiply the `amount` by 3, then subtract it from the `msg.value` to account for any leftover wei, and send it back to human resources.
 
-* Create a fallback function using `function() external payable`, and call the `deposit` function from within it. This will ensure that the logic in `deposit` executes if ether is sent directly to the contract. This is important to prevent ether from being locked in the contract, since we don't have a `withdraw` function in this use case.
+* Created a fallback function using `function() external payable`, and call the `deposit` function from within it. This will ensure that the logic in `deposit` executes if ether is sent directly to the contract. This is important to prevent ether from being locked in the contract, since we don't have a `withdraw` function in this use case.
 
-#### Test the contract
+#### Testing the contract
 
-In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
+In the `Deploy` tab in Remix, deploy the contract to the local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
 
-You will need to fill in the constructor parameters with your designated `employee` addresses.
+Filled in the constructor parameters with designated `employee` addresses.
 
-Test the `deposit` function by sending various values. Keep an eye on the `employee` balances as you send different amounts of ether to the contract and ensure the logic is executing properly.
+Tested the `deposit` function by sending various values. watched the `employee` balances as I sent different amounts of ether to the contract and ensured the logic is executing properly.
 
-![Remix Testing](Images/remix-test.png)
+![Screenshot trans](https://user-images.githubusercontent.com/83671629/135775912-3a11619d-a885-403b-8d28-eeb193dfd109.png)
+
+![2nd try 2](https://user-images.githubusercontent.com/83671629/135775951-a64986dc-1a65-4243-916e-a45abc1fd861.png)
+
+![2nd try ganache](https://user-images.githubusercontent.com/83671629/135775955-d6bd0b99-4bad-4b52-be68-9b9e8986048c.png)
 
 ### Level Two: The `TieredProfitSplitter` Contract
 
-In this contract, rather than splitting the profits between associate-level employees, you will calculate rudimentary percentages for different tiers of employees (CEO, CTO, and Bob).
+In this contract, rather than splitting the profits between associate-level employees, I calculated rudimentary percentages for different tiers of employees (CEO, CTO, and Bob).
 
-Using the starter code, within the `deposit` function, perform the following:
+Using the code, within the `deposit` function, performed the following:
 
-* Calculate the number of points/units by dividing `msg.value` by `100`.
+* Calculated the number of points/units by dividing `msg.value` by `100`.
 
   * This will allow us to multiply the points with a number representing a percentage. For example, `points * 60` will output a number that is ~60% of the `msg.value`.
 
@@ -212,147 +214,3 @@ Another tutorial is available at [EthereumDev.io](https://ethereumdev.io/)
 
 If you enjoy building games, here's an excellent tutorial called [CryptoZombies](https://cryptozombies.io/)
 
-## Submission
-
-Create a `README.md` that explains how each of the contracts work and what the motivation for each of the contracts is. Also, please provide screenshots to illustrate the functionality (e.g. how you send transactions, how the transferred amount is then distributed by each of the contracts, and how the timelock functionality can be tested with the `fastforward` function). Alternatively, you can also record your interactions with the contract as a gif (e.g. https://www.screentogif.com/)
-
-Upload this to a Github repository that explains how the contract works, and provide the testnet address for others to be able to send to.
-
----
-### Requirements
-
-<details>
-<summary>Option 1</summary>
-
-#### Contract Setup  (35 points)
-
-##### To receive all points, your code must:
-
-* Define all public variables using the assigned criteria. (8 points)
-* Create a constructor function that accepts `address payable _one`. (9 points)
-* Create a constructor function that accepts `address payable _two`. (9 points)
-* Create a constructor function that accepts `address payable _three`. (9 points)
-
-#### Contract Functionality  (35 points)
-
-##### To receive all points, your code must:
-
-* Create the `balance` function using the assigned criteria. (9 points)
-* Create the `deposit` function using the assigned criteria. (9 points)
-* Create the `fallback` function using the assigned criteria. (9 points)
-* Test the contracts tested and add screenshots to your ReadMe.md. (8 points)
-
-#### Coding Conventions and Formatting (10 points)
-
-##### To receive all points, your code must:
-
-* Place imports at the beginning of the file, just after any module comments and docstrings and before module globals and constants. (3 points)
-* Name functions and variables with lowercase characters and with words separated by underscores. (2 points)
-* Follow Don't Repeat Yourself (DRY) principles by creating maintainable and reusable code. (3 points)
-* Use concise logic and creative engineering where possible. (2 points)
-
-#### Deployment and Submission (10 points)
-
-##### To receive all points, you must:
-
-* Submit a link to a GitHub repository that’s cloned to your local machine and contains your files. (5 points)
-* Include appropriate commit messages in your files. (5 points)
-
-#### Code Comments (10 points)
-
-##### To receive all points, your code must:
-
-* Be well commented with concise, relevant notes that other developers can understand. (10 points)
-
-</details>
-
-<details>
-<summary>Option 2</summary>
-
-#### Contract Setup  (35 points)
-
-##### To receive all points, your code must:
-
-* Set Human Resources to the constructor as `msg.sender`. (8 points)
-* Create the employee initialization variables. (9 points)
-* Define `uint start_time` and `uint public distributed_shares` to assigned criteria. (9 points)
-* Create the `distribute` function using the defined criteria. (9 points)
-
-#### Contract Functionality  (35 points)
-
-##### To receive all points, your code must:
-
-* Contract deployed locally, screenshots provided. (10 points)
-* Contract tested with fakenow testing logic. (10 points)
-* Contract deployed to a live Testnet, screenshots provided. (15 points)
-
-#### Coding Conventions and Formatting (10 points)
-
-##### To receive all points, your code must:
-
-* Place imports at the beginning of the file, just after any module comments and docstrings and before module globals and constants. (3 points)
-* Name functions and variables with lowercase characters and with words separated by underscores. (2 points)
-* Follow Don't Repeat Yourself (DRY) principles by creating maintainable and reusable code. (3 points)
-* Use concise logic and creative engineering where possible. (2 points)
-
-#### Deployment and Submission (10 points)
-
-##### To receive all points, you must:
-
-* Submit a link to a GitHub repository that’s cloned to your local machine and contains your files. (5 points)
-* Include appropriate commit messages in your files. (5 points)
-
-#### Code Comments (10 points)
-
-##### To receive all points, your code must:
-
-* Be well commented with concise, relevant notes that other developers can understand. (10 points)
-
-</details>
-<details>
-<summary>Option 3</summary>
-
-#### Contract Setup  (35 points)
-
-##### To receive all points, your code must:
-
-* Calculate the number of points by dividing `msg.value`. (8 points)
-* Set the `uint amount` to the points for each employee. (9 points)
-* Add the `amount` to the total, then use it to calculate the `msg.value` distribution. (9 points)
-* Transfer the `amount` to each employee, then set `amount` equal to the points and multiply it by the given percentage. (9 points)
-
-#### Contract Functionality  (35 points)
-
-##### To receive all points, your code must:
-
-* Send the `remainder` to the employee with highest percentage. (10 points)
-* Deploy the contract. (10 points)
-* Test the contract and add corresponding screenshots to the ReadME.md. (15 points)
-
-#### Coding Conventions and Formatting (10 points)
-
-##### To receive all points, your code must:
-
-* Place imports at the beginning of the file, just after any module comments and docstrings and before module globals and constants. (3 points)
-* Name functions and variables with lowercase characters and with words separated by underscores. (2 points)
-* Follow Don't Repeat Yourself (DRY) principles by creating maintainable and reusable code. (3 points)
-* Use concise logic and creative engineering where possible. (2 points)
-
-#### Deployment and Submission (10 points)
-
-##### To receive all points, you must:
-
-* Submit a link to a GitHub repository that’s cloned to your local machine and contains your files. (5 points)
-* Include appropriate commit messages in your files. (5 points)
-
-#### Code Comments (10 points)
-
-##### To receive all points, your code must:
-
-* Be well commented with concise, relevant notes that other developers can understand. (10 points)
-
-</details>
-
----
-
-© 2021 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
