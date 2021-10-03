@@ -19,11 +19,11 @@ Fortunately, I've been learning how to program smart contracts with Solidity! I 
 
 ## Files
 
-* [`AssociateProfitSplitter.sol`](Starter-Code/AssociateProfitSplitter.sol) — Level 1 starter code.
+* [`AssociateProfitSplitter.sol`](AssociateProfitSplitter.sol) — Level 1 code.
 
-* [`TieredProfitSplitter.sol`](Starter-Code/TieredProfitSplitter.sol) — Level 2 starter code.
+* [`TieredProfitSplitter.sol`](TieredProfitSplitter.sol) — Level 2 code.
 
-* [`DeferredEquityPlan.sol`](Starter-Code/DeferredEquityPlan.sol) — Level 3 starter code.
+* [`DeferredEquityPlan.sol`](DeferredEquityPlan.sol) — Level 3 code.
 
 ## Instructions
 
