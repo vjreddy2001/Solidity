@@ -89,6 +89,8 @@ Tested the `deposit` function by sending various values. watched the `employee` 
 
 ![Screenshot trans](https://user-images.githubusercontent.com/83671629/135775912-3a11619d-a885-403b-8d28-eeb193dfd109.png)
 
+![trans](https://user-images.githubusercontent.com/83671629/135777653-ec3fdc3b-0583-4cf4-8a39-6f22f7798700.png)
+
 ![2nd try 2](https://user-images.githubusercontent.com/83671629/135775951-a64986dc-1a65-4243-916e-a45abc1fd861.png)
 
 ![2nd try ganache](https://user-images.githubusercontent.com/83671629/135775955-d6bd0b99-4bad-4b52-be68-9b9e8986048c.png)
