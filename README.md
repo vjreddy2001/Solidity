@@ -192,6 +192,15 @@ Using the code, the following were performed:
 
 * Deployed and tested the contract locally.
 
+
+![level 3](https://user-images.githubusercontent.com/83671629/136112555-ca6501b9-4560-41d7-a46b-f3347df349ac.png)
+
+
+![Level 3_depo](https://user-images.githubusercontent.com/83671629/136112564-69e00137-a246-4447-a6af-9b0f44791b04.png)
+
+
+![Level3 Trans](https://user-images.githubusercontent.com/83671629/136112568-fde5d6f0-a923-4edb-a637-52e314a66ef6.png)
+
   * For this contract, test the timelock functionality by adding a new variable called `uint fakenow = now;` as the first line of the contract, then replace every other instance of `now` with `fakenow`. Utilize the following `fastforward` function to manipulate `fakenow` during testing.
 
   * Add this function to "fast forward" time by 100 days when the contract is deployed (requires setting up `fakenow`):
@@ -211,8 +220,8 @@ Using the code, the following were performed:
 Once you feel comfortable with your contracts, point MetaMask to the Kovan or Ropsten network. Make sure that you have test ether on this network!
 
 After switching MetaMask to Kovan, deploy the contracts as before, and copy/keep a note of their deployed addresses. The transactions will also be in your MetaMask history, and on the blockchain permanently to explore later.
+![Level3_meta](https://user-images.githubusercontent.com/83671629/136112604-6226f657-5fcf-4d51-8d63-f07fcd319dc1.png)
 
-![Remix Deploy](Images/remix-deploy.png)
 
 ## Resources
 
