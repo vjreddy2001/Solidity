@@ -1,4 +1,4 @@
-# Solidity - Smart Contract
+# Solidity - Smart Contracts with Solidity
 
 # "Looks like we've made our first contract!"
 
