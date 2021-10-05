@@ -125,13 +125,22 @@ Using the code, within the `deposit` function, performed the following:
 
   * Step 3: `employee_one.transfer(amount);`
 
-* Send the remainder to the employee with the highest percentage by subtracting `total` from `msg.value`, and sending that to an employee.
+* Sent the remainder to the employee with the highest percentage by subtracting `total` from `msg.value`, and sending that to an employee.
 
-* Deploy and test the contract functionality by depositing various ether values (greater than 100 wei).
+* Deployed and tested the contract functionality by depositing various ether values (20 ether).
 
-  * The provided `balance` function can be used as a test to see if the logic you have in the `deposit` function is valid. Since all of the ether should be transferred to employees, this function should always return `0`, since the contract should never store ether itself.
+  * The provided `balance` function can be used as a test to see if the logic in the `deposit` function is valid. Since all of the ether should be transferred to employees, this function should always return `0`, since the contract should never store ether itself.
 
-  * Note: The 100 wei threshold is due to the way we calculate the points. If we send less than 100 wei, for example, 80 wei, `points` would equal `0` because `80 / 100` equals `0` because the remainder is discarded. We will learn more advanced arbitrary precision division later in the course. In this case, we can disregard the threshold as 100 wei is a significantly smaller value than the ether or Gwei units that are far more commonly used in the real world (most people aren't sending less than a penny's worth of ether).
+
+![level 2](https://user-images.githubusercontent.com/83671629/135946710-bf30f5e3-2868-48b1-b76a-0f7626244c91.png)
+
+![Level 2_trans](https://user-images.githubusercontent.com/83671629/135946722-6112080b-ffb3-4696-96ca-f51549c78131.png)
+
+![level 2 Ganache](https://user-images.githubusercontent.com/83671629/135946728-b4472921-dc49-473b-ae52-750013d88d89.png)
+
+  * Note: 
+  * I used ether to transfer to see the changes in the account clearly.
+  * The 100 wei threshold is due to the way we calculate the points. If we send less than 100 wei, for example, 80 wei, `points` would equal `0` because `80 / 100` equals `0` because the remainder is discarded. We will learn more advanced arbitrary precision division later in the course. In this case, we can disregard the threshold as 100 wei is a significantly smaller value than the ether or Gwei units that are far more commonly used in the real world (most people aren't sending less than a penny's worth of ether).
 
 ### Level Three: The `DeferredEquityPlan` Contract
 
@@ -143,15 +152,15 @@ In this contract, we will be managing an employee's "deferred equity incentive p
 
   * Specific vesting periods, the dollar/crypto value of shares awarded, and the percentage equity stake (the percentage ownership of the company) all tend to vary according to the company, the specialized skills, or seniority of the employee, and the negotiating positions of the employee/company. If you receive an offer from a company offering equity (which is great!), just make sure you can clarify the current dollar value of those shares being offered (based on, perhaps, valuation implied by the most recent outside funding round). In other words, don’t be content with just receiving “X” number of shares without having a credible sense of what amount of dollars that “X” number represents. Be sure to understand your vesting schedule as well, particularly if you think you may not stick around for an extended period of time.
 
-Using the starter code, perform the following:
+Using the code, the following were performed:
 
 * Human resources will be set in the constructor as the `msg.sender`, since HR will be deploying the contract.
 
 * Below the `employee` initialization variables at the top (after `bool active = true;`), set the total shares and annual distribution:
 
-  * Create a `uint` called `total_shares` and set this to `1000`.
+  * Created a `uint` called `total_shares` and set this to `1000`.
 
-  * Create another `uint` called `annual_distribution` and set this to `250`. This equates to a four-year vesting period for the `total_shares`, as `250` will be distributed per year. Since it is expensive to calculate this in Solidity, we can simply set these values manually. You can tweak them as you see fit, as long as you can divide `total_shares` by `annual_distribution` evenly.
+  * Created another `uint` called `annual_distribution` and set this to `250`. This equates to a four-year vesting period for the `total_shares`, as `250` will be distributed per year. Since it is expensive to calculate this in Solidity, we can simply set these values manually. We can tweak them as you see fit, as long as we can divide `total_shares` by `annual_distribution` evenly.
 
 * The `uint start_time = now;` line permanently stores the contract's start date. We'll use this to calculate the vested shares later. Below this variable, set the `unlock_time` to equal `now` plus `365 days`. We will increment each distribution period.
 
@@ -169,15 +178,15 @@ Using the starter code, perform the following:
 
   * After the `require` statements, add `365 days` to the `unlock_time`. This will calculate next year's unlock time before distributing this year's shares. We want to perform all of our calculations like this before distributing the shares.
 
-  * Next, set the new value for `distributed_shares` by calculating how many years have passed since `start_time` multiplied by `annual_distributions`. For example:
+  * Next, I set the new value for `distributed_shares` by calculating how many years have passed since `start_time` multiplied by `annual_distributions`. For example:
 
     * The `distributed_shares` is equal to `(now - start_time)` divided by `365 days`, multiplied by the annual distribution. If `now - start_time` is less than `365 days`, the output will be `0` since the remainder will be discarded. If it is something like `400` days, the output will equal `1`, meaning `distributed_shares` would equal `250`.
 
-    * Make sure to include the parenthesis around `now - start_time` in your calculation to ensure that the order of operations is followed properly.
+    * Made sure to include the parenthesis around `now - start_time` in your calculation to ensure that the order of operations is followed properly.
 
   * The final `if` statement provided checks in the case the employee does not cash out until 5+ years after the contract start, the contract does not reward more than the `total_shares` agreed upon in the contract.
 
-* Deploy and test your contract locally.
+* Deployed and tested the contract locally.
 
   * For this contract, test the timelock functionality by adding a new variable called `uint fakenow = now;` as the first line of the contract, then replace every other instance of `now` with `fakenow`. Utilize the following `fastforward` function to manipulate `fakenow` during testing.
 
@@ -189,11 +198,11 @@ Using the starter code, perform the following:
     }
     ```
 
-  * Once you are satisfied with your contract's logic, revert the `fakenow` testing logic.
+  * Once satisfied with the contract's logic, reverted the `fakenow` testing logic.
 
-* Congratulate yourself for building such complex smart contracts in your first week of Solidity! You are learning specialized skills that are highly desired in the blockchain industry!
+* Congratulate!! for building such complex smart contracts with Solidity!!
 
-### Deploy the contracts to a live Testnet
+### Deploying the contracts to a live Testnet
 
 Once you feel comfortable with your contracts, point MetaMask to the Kovan or Ropsten network. Make sure that you have test ether on this network!
 
