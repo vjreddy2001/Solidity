@@ -33,7 +33,11 @@ Fortunately, I've been learning how to program smart contracts with Solidity! I 
 
 * **Level Three** is a `DeferredEquityPlan` that models traditional company stock plans. This contract will automatically manage 1000 shares, with an annual distribution of 250 shares over four years for a single employee.
 
-### Starting the project
+
+
+![Solidity-programming-blockchain-featured-image-osfy-Jan-21](https://user-images.githubusercontent.com/83671629/135947368-db9382a6-4527-422f-a6d6-471dd8d84f1b.jpg)
+
+### Starting the project using Solidity
 
 Navigating to the [Remix IDE](https://remix.ethereum.org) I created a new contract called `AssociateProfitSplitter.sol`.
 
