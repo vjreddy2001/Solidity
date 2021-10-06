@@ -219,7 +219,9 @@ Using the code, the following were performed:
 
 Once you feel comfortable with your contracts, point MetaMask to the Kovan or Ropsten network. Make sure that you have test ether on this network!
 
-After switching MetaMask to Kovan, deploy the contracts as before, and copy/keep a note of their deployed addresses. The transactions will also be in your MetaMask history, and on the blockchain permanently to explore later.
+After switching MetaMask to Kovan, deploy the contracts as before, and copy/keep a note of their deployed addresses.
+The transactions will also be in your MetaMask history, and on the blockchain permanently to explore later.
+
 ![Level3_meta](https://user-images.githubusercontent.com/83671629/136112604-6226f657-5fcf-4d51-8d63-f07fcd319dc1.png)
 
 
